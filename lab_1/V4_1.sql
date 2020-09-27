@@ -19,7 +19,7 @@ GO
 
 -- Создать бекап базы данных
 BACKUP DATABASE ALEXEY_BOBKO
-	TO DISK = 'D:\Учеба\7 sem\DB\labs\lab_1\ALEXEY_BOBKO.bak';
+TO DISK = 'D:\Учеба\7 sem\DB\labs\lab_1\ALEXEY_BOBKO.bak';
 GO
 
 -- Удалить базу данных
@@ -31,5 +31,5 @@ GO
 
 -- Восстановить базу данных из сохраненного бекапа
 RESTORE DATABASE ALEXEY_BOBKO
-   FROM DISK = 'D:\Учеба\7 sem\DB\labs\lab_1\ALEXEY_BOBKO.bak';
+FROM DISK = 'D:\Учеба\7 sem\DB\labs\lab_1\ALEXEY_BOBKO.bak';
 GO
