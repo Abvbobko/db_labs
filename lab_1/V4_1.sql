@@ -1,35 +1,35 @@
--- Create new data base
+-- Создать новую базу данных
 CREATE DATABASE ALEXEY_BOBKO;
 GO
 
--- Change work data base
+-- Изменить рабочую базу данных
 USE ALEXEY_BOBKO;
 GO
 
--- Create sales and persons schemas
+-- Создать схемы sales и persons
 CREATE SCHEMA sales;
 GO
 
 CREATE SCHEMA persons;
 GO
 
--- Create table Orders in sales schema
+-- Создать таблицу Orders в sales схеме
 CREATE TABLE sales.Orders (OrderNum Int NULL);
 GO
 
--- Create data base backup
+-- Создать бекап базы данных
 BACKUP DATABASE ALEXEY_BOBKO
-	TO DISK = 'D:\�����\7 sem\DB\labs\lab_1\ALEXEY_BOBKO.bak';
+	TO DISK = 'D:\Учеба\7 sem\DB\labs\lab_1\ALEXEY_BOBKO.bak';
 GO
 
--- Delete database
+-- Удалить базу данных
 USE MASTER;
 GO
 
 DROP DATABASE ALEXEY_BOBKO;
 GO
 
--- Restore data base from saved backup
+-- Восстановить базу данных из сохраненного бекапа
 RESTORE DATABASE ALEXEY_BOBKO
-   FROM DISK = 'D:\�����\7 sem\DB\labs\lab_1\ALEXEY_BOBKO.bak';
+   FROM DISK = 'D:\Учеба\7 sem\DB\labs\lab_1\ALEXEY_BOBKO.bak';
 GO
