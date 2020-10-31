@@ -69,4 +69,47 @@ FROM dbo.StateProvince AS state_prov
 ON state_prov.TerritoryID = state_terr.TerritoryID
     JOIN sales_cte
     ON sales_cte.TerritoryID = state_prov.TerritoryID;
+GO
 
+/*
+	d) удалите из таблицы dbo.StateProvince одну строку (где StateProvinceID = 5)
+*/
+
+DELETE FROM dbo.StateProvince
+WHERE StateProvinceID = 5;
+GO
+
+/*
+	e) напишите Merge выражение, использующее dbo.StateProvince как target, 
+	а временную таблицу как source. 
+	Для связи target и source используйте StateProvinceID. 
+	Обновите поля SalesYTD и SumSales, если запись присутствует в source и target. 
+	Если строка присутствует во временной таблице, 
+	но не существует в target, добавьте строку в dbo.StateProvince. 
+	Если в dbo.StateProvince присутствует такая строка, 
+	которой не существует во временной таблице, удалите строку из dbo.StateProvince.
+*/
+
+MERGE dbo.StateProvince AS target_table 
+USING #StateProvince AS source_table
+ON target_table.StateProvinceID = source_table.StateProvinceID
+WHEN MATCHED THEN
+UPDATE 
+	SET 
+		target_table.SalesYTD = source_table.SalesYTD,
+		target_table.SumSales = source_table.SumSales
+WHEN NOT MATCHED THEN
+INSERT VALUES (
+	StateProvinceID,
+	StateProvinceCode,
+	CountryRegionCode,
+    Name,
+    TerritoryID,
+    ModifiedDate,
+    CountryNum,
+    SalesYTD,
+    SumSales
+)
+WHEN NOT MATCHED BY SOURCE THEN
+DELETE;
+GO
