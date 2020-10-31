@@ -2,11 +2,11 @@ USE AdventureWorks2012;
 GO
 
 /*
-	a) выполните код, созданный во втором задании второй лабораторной работы. 
-	Добавьте в таблицу dbo.StateProvince поля SalesYTD MONEY и SumSales MONEY. 
-	Также создайте в таблице вычисляемое поле SalesPercent, 
-	вычисляющее процентное выражение значения в поле 
-	SumSales от значения в поле SalesYTD.
+	a) РІС‹РїРѕР»РЅРёС‚Рµ РєРѕРґ, СЃРѕР·РґР°РЅРЅС‹Р№ РІРѕ РІС‚РѕСЂРѕРј Р·Р°РґР°РЅРёРё РІС‚РѕСЂРѕР№ Р»Р°Р±РѕСЂР°С‚РѕСЂРЅРѕР№ СЂР°Р±РѕС‚С‹. 
+	Р”РѕР±Р°РІСЊС‚Рµ РІ С‚Р°Р±Р»РёС†Сѓ dbo.StateProvince РїРѕР»СЏ SalesYTD MONEY Рё SumSales MONEY. 
+	РўР°РєР¶Рµ СЃРѕР·РґР°Р№С‚Рµ РІ С‚Р°Р±Р»РёС†Рµ РІС‹С‡РёСЃР»СЏРµРјРѕРµ РїРѕР»Рµ SalesPercent, 
+	РІС‹С‡РёСЃР»СЏСЋС‰РµРµ РїСЂРѕС†РµРЅС‚РЅРѕРµ РІС‹СЂР°Р¶РµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ РІ РїРѕР»Рµ 
+	SumSales РѕС‚ Р·РЅР°С‡РµРЅРёСЏ РІ РїРѕР»Рµ SalesYTD.
 */
 
 ALTER TABLE dbo.StateProvince 
@@ -17,10 +17,10 @@ ADD
 GO
 
 /*
-	b) создайте временную таблицу #StateProvince, 
-	с первичным ключом по полю StateProvinceID. 
-	Временная таблица должна включать все поля таблицы 
-	dbo.StateProvince за исключением поля SalesPercent.
+	b) СЃРѕР·РґР°Р№С‚Рµ РІСЂРµРјРµРЅРЅСѓСЋ С‚Р°Р±Р»РёС†Сѓ #StateProvince, 
+	СЃ РїРµСЂРІРёС‡РЅС‹Рј РєР»СЋС‡РѕРј РїРѕ РїРѕР»СЋ StateProvinceID. 
+	Р’СЂРµРјРµРЅРЅР°СЏ С‚Р°Р±Р»РёС†Р° РґРѕР»Р¶РЅР° РІРєР»СЋС‡Р°С‚СЊ РІСЃРµ РїРѕР»СЏ С‚Р°Р±Р»РёС†С‹ 
+	dbo.StateProvince Р·Р° РёСЃРєР»СЋС‡РµРЅРёРµРј РїРѕР»СЏ SalesPercent.
 */
 
 CREATE TABLE #StateProvince (
@@ -37,11 +37,11 @@ CREATE TABLE #StateProvince (
 GO
 
 /*
-	c) заполните временную таблицу данными из dbo.StateProvince. 
-	Поле SalesYTD заполните значениями из таблицы Sales.SalesTerritory. 
-	Посчитайте сумму продаж (SalesYTD) для каждой территории (TerritoryID) 
-	в таблице Sales.SalesPerson и заполните этими значениями поле SumSales. 
-	Подсчет суммы продаж осуществите в Common Table Expression (CTE).
+	c) Р·Р°РїРѕР»РЅРёС‚Рµ РІСЂРµРјРµРЅРЅСѓСЋ С‚Р°Р±Р»РёС†Сѓ РґР°РЅРЅС‹РјРё РёР· dbo.StateProvince. 
+	РџРѕР»Рµ SalesYTD Р·Р°РїРѕР»РЅРёС‚Рµ Р·РЅР°С‡РµРЅРёСЏРјРё РёР· С‚Р°Р±Р»РёС†С‹ Sales.SalesTerritory. 
+	РџРѕСЃС‡РёС‚Р°Р№С‚Рµ СЃСѓРјРјСѓ РїСЂРѕРґР°Р¶ (SalesYTD) РґР»СЏ РєР°Р¶РґРѕР№ С‚РµСЂСЂРёС‚РѕСЂРёРё (TerritoryID) 
+	РІ С‚Р°Р±Р»РёС†Рµ Sales.SalesPerson Рё Р·Р°РїРѕР»РЅРёС‚Рµ СЌС‚РёРјРё Р·РЅР°С‡РµРЅРёСЏРјРё РїРѕР»Рµ SumSales. 
+	РџРѕРґСЃС‡РµС‚ СЃСѓРјРјС‹ РїСЂРѕРґР°Р¶ РѕСЃСѓС‰РµСЃС‚РІРёС‚Рµ РІ Common Table Expression (CTE).
 */
 
 WITH sales_cte AS (
@@ -72,7 +72,7 @@ ON state_prov.TerritoryID = state_terr.TerritoryID
 GO
 
 /*
-	d) удалите из таблицы dbo.StateProvince одну строку (где StateProvinceID = 5)
+	d) СѓРґР°Р»РёС‚Рµ РёР· С‚Р°Р±Р»РёС†С‹ dbo.StateProvince РѕРґРЅСѓ СЃС‚СЂРѕРєСѓ (РіРґРµ StateProvinceID = 5)
 */
 
 DELETE FROM dbo.StateProvince
@@ -80,14 +80,14 @@ WHERE StateProvinceID = 5;
 GO
 
 /*
-	e) напишите Merge выражение, использующее dbo.StateProvince как target, 
-	а временную таблицу как source. 
-	Для связи target и source используйте StateProvinceID. 
-	Обновите поля SalesYTD и SumSales, если запись присутствует в source и target. 
-	Если строка присутствует во временной таблице, 
-	но не существует в target, добавьте строку в dbo.StateProvince. 
-	Если в dbo.StateProvince присутствует такая строка, 
-	которой не существует во временной таблице, удалите строку из dbo.StateProvince.
+	e) РЅР°РїРёС€РёС‚Рµ Merge РІС‹СЂР°Р¶РµРЅРёРµ, РёСЃРїРѕР»СЊР·СѓСЋС‰РµРµ dbo.StateProvince РєР°Рє target, 
+	Р° РІСЂРµРјРµРЅРЅСѓСЋ С‚Р°Р±Р»РёС†Сѓ РєР°Рє source. 
+	Р”Р»СЏ СЃРІСЏР·Рё target Рё source РёСЃРїРѕР»СЊР·СѓР№С‚Рµ StateProvinceID. 
+	РћР±РЅРѕРІРёС‚Рµ РїРѕР»СЏ SalesYTD Рё SumSales, РµСЃР»Рё Р·Р°РїРёСЃСЊ РїСЂРёСЃСѓС‚СЃС‚РІСѓРµС‚ РІ source Рё target. 
+	Р•СЃР»Рё СЃС‚СЂРѕРєР° РїСЂРёСЃСѓС‚СЃС‚РІСѓРµС‚ РІРѕ РІСЂРµРјРµРЅРЅРѕР№ С‚Р°Р±Р»РёС†Рµ, 
+	РЅРѕ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ РІ target, РґРѕР±Р°РІСЊС‚Рµ СЃС‚СЂРѕРєСѓ РІ dbo.StateProvince. 
+	Р•СЃР»Рё РІ dbo.StateProvince РїСЂРёСЃСѓС‚СЃС‚РІСѓРµС‚ С‚Р°РєР°СЏ СЃС‚СЂРѕРєР°, 
+	РєРѕС‚РѕСЂРѕР№ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ РІРѕ РІСЂРµРјРµРЅРЅРѕР№ С‚Р°Р±Р»РёС†Рµ, СѓРґР°Р»РёС‚Рµ СЃС‚СЂРѕРєСѓ РёР· dbo.StateProvince.
 */
 
 MERGE dbo.StateProvince AS target_table 
@@ -113,3 +113,5 @@ INSERT VALUES (
 WHEN NOT MATCHED BY SOURCE THEN
 DELETE;
 GO
+
+SELECT * FROM dbo.StateProvince

@@ -2,16 +2,16 @@ USE AdventureWorks2012;
 GO
 
 /*
-	a) добавьте в таблицу dbo.StateProvince поле CountryRegionName типа nvarchar(50);
+	a) РґРѕР±Р°РІСЊС‚Рµ РІ С‚Р°Р±Р»РёС†Сѓ dbo.StateProvince РїРѕР»Рµ CountryRegionName С‚РёРїР° nvarchar(50);
 */
 
 ALTER TABLE dbo.StateProvince ADD CountryRegionName NVARCHAR(50);
 GO
 
 /*
-	b) объявите табличную переменную с такой же структурой 
-		как dbo.StateProvince и заполните ее данными из dbo.StateProvince. 
-		Заполните поле CountryRegionName данными из Person.CountryRegion поля Name;
+	b) РѕР±СЉСЏРІРёС‚Рµ С‚Р°Р±Р»РёС‡РЅСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ СЃ С‚Р°РєРѕР№ Р¶Рµ СЃС‚СЂСѓРєС‚СѓСЂРѕР№ 
+		РєР°Рє dbo.StateProvince Рё Р·Р°РїРѕР»РЅРёС‚Рµ РµРµ РґР°РЅРЅС‹РјРё РёР· dbo.StateProvince. 
+		Р—Р°РїРѕР»РЅРёС‚Рµ РїРѕР»Рµ CountryRegionName РґР°РЅРЅС‹РјРё РёР· Person.CountryRegion РїРѕР»СЏ Name;
 */
 
 DECLARE @StateProvince TABLE (
@@ -48,7 +48,7 @@ INNER JOIN Person.CountryRegion AS cr
 ON sp.CountryRegionCode = cr.CountryRegionCode;
 
 /*
-	c) обновите поле CountryRegionName в dbo.StateProvince данными из табличной переменной;
+	c) РѕР±РЅРѕРІРёС‚Рµ РїРѕР»Рµ CountryRegionName РІ dbo.StateProvince РґР°РЅРЅС‹РјРё РёР· С‚Р°Р±Р»РёС‡РЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№;
 */
 
 UPDATE dbo.StateProvince
@@ -58,7 +58,7 @@ WHERE dbo.StateProvince.StateProvinceID = sp.StateProvinceID;
 GO
 
 /*
-	d) удалите штаты из dbo.StateProvince, которые отсутствуют в таблице Person.Address;
+	d) СѓРґР°Р»РёС‚Рµ С€С‚Р°С‚С‹ РёР· dbo.StateProvince, РєРѕС‚РѕСЂС‹Рµ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚ РІ С‚Р°Р±Р»РёС†Рµ Person.Address;
 */
 
 DELETE FROM dbo.StateProvince
@@ -68,19 +68,19 @@ WHERE StateProvinceID NOT IN (
 GO
 
 /*
-	e) удалите поле CountryRegionName из таблицы, 
-	удалите все созданные ограничения и значения по умолчанию.
+	e) СѓРґР°Р»РёС‚Рµ РїРѕР»Рµ CountryRegionName РёР· С‚Р°Р±Р»РёС†С‹, 
+	СѓРґР°Р»РёС‚Рµ РІСЃРµ СЃРѕР·РґР°РЅРЅС‹Рµ РѕРіСЂР°РЅРёС‡РµРЅРёСЏ Рё Р·РЅР°С‡РµРЅРёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ.
 */
 
---- удаляем поле
+--- СѓРґР°Р»СЏРµРј РїРѕР»Рµ
 ALTER TABLE dbo.StateProvince DROP COLUMN CountryRegionName;
 GO
 
---- удаляем ограничения
+--- СѓРґР°Р»СЏРµРј РѕРіСЂР°РЅРёС‡РµРЅРёСЏ
 ALTER TABLE dbo.StateProvince 
 DROP CONSTRAINT name_is_unique, no_Digits;
 
---- имена значений по умолчанию
+--- РёРјРµРЅР° Р·РЅР°С‡РµРЅРёР№ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 
 SELECT name
 FROM sys.objects 
@@ -90,13 +90,13 @@ WHERE [type] = 'D' AND parent_object_id = (
 	WHERE schema_Name(schema_id) = 'dbo' AND name = 'StateProvince'
 )
 
---- удаляем значения по умолчанию
+--- СѓРґР°Р»СЏРµРј Р·РЅР°С‡РµРЅРёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 ALTER TABLE dbo.StateProvince 
 DROP CONSTRAINT modified_date_default;
 GO
 
 /*
-	f) удалите таблицу dbo.StateProvince
+	f) СѓРґР°Р»РёС‚Рµ С‚Р°Р±Р»РёС†Сѓ dbo.StateProvince
 */
 
 DROP TABLE dbo.StateProvince;
