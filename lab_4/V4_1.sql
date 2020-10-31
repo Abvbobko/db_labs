@@ -81,8 +81,6 @@ GO
 	Убедитесь, что все три операции отображены в Production.ProductModelHst.
 */
 
-SELECT * FROM ProductModelView
-
 INSERT INTO ProductModelView (
 	Name,	 
 	rowguid,

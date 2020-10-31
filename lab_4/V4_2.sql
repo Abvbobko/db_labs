@@ -40,7 +40,7 @@ GO
 
 CREATE UNIQUE CLUSTERED INDEX PRODUCT_MODEL_INDX
     ON dbo.ProductView(ProductModelID, CultureID);
-GO
+GO 
 
 /*
 	b) Создайте три INSTEAD OF триггера для представления 
@@ -111,7 +111,7 @@ BEGIN
 	DECLARE @modified_date DATETIME = CURRENT_TIMESTAMP;
 	
 	UPDATE Production.Culture
-		SET Name = (SELECT CultName FROM inserted),
+	SET	Name = (SELECT CultName FROM inserted),
 		ModifiedDate = @modified_date
 	WHERE Name = (SELECT CultName FROM deleted);
 	
@@ -126,7 +126,6 @@ BEGIN
 	WHERE [Description] = (SELECT [Description] FROM deleted)
 END;
 GO
-
 
 --- delete trigger
 CREATE TRIGGER ProductViewDeleteTrigger
@@ -173,14 +172,13 @@ GO
 INSERT INTO ProductView(
 	CultureID, CultName, ProdModelName, rowguid, [Description]
 ) VALUES (
-	'test1', 'cult1', 'prod1', 'A21EED3A-1A82-4855-99CB-2AFE8290D641', 'hello'
+	'test3', 'cult3', 'prod3', 'A51EED3A-1A82-4855-99CB-2AFE8290D641', 'hello'
 )
 
 UPDATE ProductView
 SET
-	CultureID = 'test2',
+	CultureID = 'tes44'
+WHERE CultureID = 'test3'
 
-
-SELECT * FROM ProductView
-
---- !! ДОбавить апдейт ID --- !!!!
+DELETE FROM ProductView
+WHERE CultureID = 'tes44'
